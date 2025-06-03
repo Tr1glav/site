@@ -1,1 +1,135 @@
-<iframe id="online-alarm-kur-iframe" src="https://embed-countdown.onlinealarmkur.com/ru/#2025-08-09T00:00:00@Europe%2FMoscow" width="360" height="80" style="display: block; margin: 0px auto; border: 0px;"></iframe>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отсчет до 9 августа 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        .countdown-container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 90%;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .countdown-item {
+            margin: 10px;
+            min-width: 100px;
+        }
+        .countdown-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 5px;
+        }
+        .countdown-label {
+            font-size: 1rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+        }
+        .target-date {
+            margin-top: 30px;
+            font-size: 1.2rem;
+            color: #16a085;
+            font-weight: bold;
+        }
+        @media (max-width: 500px) {
+            .countdown-number {
+                font-size: 2rem;
+            }
+            .countdown-item {
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <h1>До 9 августа 2025 года осталось:</h1>
+        <div class="countdown">
+            <div class="countdown-item">
+                <div class="countdown-number" id="days">00</div>
+                <div class="countdown-label">дней</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="hours">00</div>
+                <div class="countdown-label">часов</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="minutes">00</div>
+                <div class="countdown-label">минут</div>
+            </div>
+            <div class="countdown-item">
+                <div class="countdown-number" id="seconds">00</div>
+                <div class="countdown-label">секунд</div>
+            </div>
+        </div>
+        <div class="target-date">Целевая дата: 9 августа 2025 года</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Устанавливаем целевую дату - 9 августа 2025 года
+            const targetDate = new Date('2025-08-09T00:00:00');
+            
+            // Элементы для отображения
+            const daysElement = document.getElementById('days');
+            const hoursElement = document.getElementById('hours');
+            const minutesElement = document.getElementById('minutes');
+            const secondsElement = document.getElementById('seconds');
+            
+            function updateCountdown() {
+                const currentDate = new Date();
+                const difference = targetDate - currentDate;
+                
+                if (difference <= 0) {
+                    // Если дата наступила
+                    daysElement.textContent = '00';
+                    hoursElement.textContent = '00';
+                    minutesElement.textContent = '00';
+                    secondsElement.textContent = '00';
+                    return;
+                }
+                
+                // Рассчитываем оставшееся время
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+                
+                // Обновляем отображение
+                daysElement.textContent = days.toString().padStart(2, '0');
+                hoursElement.textContent = hours.toString().padStart(2, '0');
+                minutesElement.textContent = minutes.toString().padStart(2, '0');
+                secondsElement.textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            // Обновляем счетчик сразу и затем каждую секунду
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+    </script>
+</body>
+</html>
